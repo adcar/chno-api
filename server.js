@@ -36,14 +36,22 @@ fs.createReadStream("caffeine.csv")
 			datakick
 				.item(req.params.barcode)
 				.then(function(data) {
-					const query = data.brand_name + " " + data.name;
-					arrayOfNames = csvData.map(item => item.name);
-					let correctedQuery = didYouMean(query, arrayOfNames);
-					let index = arrayOfNames.indexOf(correctedQuery);
-					res.send(csvData[index]);
+					if (data.message !== "Item not found") {
+						const query = data.brand_name + " " + data.name;
+						arrayOfNames = csvData.map(item => item.name);
+						let correctedQuery = didYouMean(query, arrayOfNames);
+						let index = arrayOfNames.indexOf(correctedQuery);
+						res.send(csvData[index]);
+					} else {
+						res.send({
+							error: "Item not found"
+						});
+					}
 				})
 				.catch(function(error) {
-					console.log(error.message);
+					res.send({
+						error: "Item not found"
+					});
 				});
 		});
 	});
