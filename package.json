@@ -1,0 +1,14 @@
+{
+  "name": "chno",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "arraysearch": "^1.2.0",
+    "csv-parse": "^3.2.0",
+    "datakick": "^1.1.4",
+    "didyoumean2": "^2.0.0",
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0"
+  }
+}
